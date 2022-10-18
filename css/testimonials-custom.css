@@ -1,0 +1,11 @@
+/*
+Description: Style testimonials
+Colors: #47c9e5#27a9c5#0789a5
+*/
+.testimonials-custom .slick-list{padding:15px;}
+.testimonials-custom .testimonial-item{display:flex; align-items:center;}
+.testimonials-custom .testimonial-image img{display:inline-block;}
+.testimonials-custom .testimonial-quote-info{margin:20px;}
+.testimonials-custom .testimonial-quote [class*="quote"]{margin:0 5px;}
+.testimonials-custom a.slick-arrow{width:40px; height:40px; display:flex; align-items:center; justify-content:center;}
+.testimonials-custom .slick-dots{margin:0 auto; position:static;}

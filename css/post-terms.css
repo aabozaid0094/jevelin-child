@@ -1,0 +1,4 @@
+.term-item{display:block; margin-bottom:10px; transition:transform .4s ease-in-out;}
+.term-item:hover{transform:translateY(5px);}
+.term-thumb img{display:inline-block; max-width:calc(100% - 10px); margin:5px;}
+.term-name{margin:5px; padding:10px; background-color:#337ab7; color:#fff;}

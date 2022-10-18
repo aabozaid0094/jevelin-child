@@ -1,0 +1,14 @@
+.vc_colored-dropdown .dark-theme-bg, 
+.vc_general.vc_btn3.vc_btn3-color-dark-theme-bg
+{color:#fff; background-color:#27a9c5;}
+.vc_colored-dropdown .light-theme-bg, 
+.vc_general.vc_btn3.vc_btn3-color-light-theme-bg
+{color:#fff; background-color:#47c9e5;}
+.vc_colored-dropdown .light-theme-link, 
+.vc_general.vc_btn3.vc_btn3-color-light-theme-link
+{color:#47c9e5; background-color:transparent;}
+.vc_colored-dropdown .white-link, 
+.vc_general.vc_btn3.vc_btn3-color-white-link
+{color:#fff; background-color:#999;}
+
+/* .column-testimonial-image img{height:100px; width:auto;} */

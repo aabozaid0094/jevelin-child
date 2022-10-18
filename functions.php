@@ -190,3 +190,21 @@ function content_in_minutes($id){
 
 add_action( 'admin_init', 'post_page_attributes' );
 function post_page_attributes(){ add_post_type_support( 'post', 'page-attributes' ); }
+
+function register_services_widget_area(){
+	register_sidebar(
+		array(
+			'name'				=> esc_html__('Services Widgets', 'jevelinchild'),
+			'id'				=> 'services-widgets',
+			'description'		=> esc_html__( 'Services Widgets', 'jevelinchild' ),
+			'class'				=> 'services_widgets',
+			'before_widget'		=> '<div id="%1$s" class="widget-item %2$s">',
+			'after_widget'		=> '</div>',
+			'before_title'		=> '<h3 class="widget-title services-widget-title">',
+			'after_title'		=> '</h3>',
+			'before_sidebar'	=> '<div id="%1$s" class="widget-area %2$s">',
+			'after_sidebar'		=> '</div>',
+		)
+	);
+}
+add_action('widgets_init', 'register_services_widget_area');

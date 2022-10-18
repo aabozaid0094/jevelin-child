@@ -43,7 +43,7 @@ function post_terms($atts)
     $extra_classes = ' ' . $attributes['extra_classes'];
     $extra_classes .= (!$slider) ? ' equalized-group' : '';
     $more_icon = '<i class="button-icon fa fa-plus" aria-hidden="true"></i>';
-    $title_tag = 'h2';
+    $title_tag = 'h3';
     $image_size = 'medium_large';
     $args = array( 'taxonomy' => $taxonomy, 'offset' => $offset, 'hide_empty' => $hide_empty,);
     if (-1 !== $parent){ $args['parent'] = $parent;}

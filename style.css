@@ -228,6 +228,7 @@ textarea{height:auto;}
 .archive .content-container, .single .content-container{padding:60px 0;}
 @media(max-width:800px){
     .vc_column_mobile_element_alignment_center ul{text-align:center!important;}
+	.vc_row_reversed_columns{flex-direction:column-reverse;}
 }
 
 /*WPBakery Custom Buttons*/

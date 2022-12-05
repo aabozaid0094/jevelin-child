@@ -7,10 +7,10 @@ jQuery(document).ready(function ($) {
 		".single .sh-titlebar .titlebar-title>*, .single .sh-titlebar .sh-element-titlebar-title>*"
 	).text(single_title);
 
-	$(".rtl.archive #content, .rtl.search #content")
+	$(".rtl.archive #content.content-with-sidebar-right, .rtl.search #content.content-with-sidebar-right")
 		.addClass("content-with-sidebar-left")
 		.removeClass("content-with-sidebar-right");
-	$(".rtl.archive #sidebar, .rtl.search #sidebar")
+	$(".rtl.archive #sidebar.sidebar-right, .rtl.search #sidebar.sidebar-right")
 		.addClass("sidebar-left")
 		.removeClass("sidebar-right");
 	$(".rtl .sh-page-switcher-button i").toggleClass(

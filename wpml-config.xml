@@ -16,5 +16,21 @@
             <key name="notice_text"/>
             <key name="notice_more_url"/>
         </key>
+        <key name="jevelin_options">
+            <key name="contact_location"/>
+            <key name="contact_workhours"/>
+            <key name="copyright_text"/>
+            <key name="titlebar-home-title"/>
+            <key name="titlebar-post-title"/>
+            <key name="titlebar-portfolio-title"/>
+            <key name="titlebar-blog-woocommerce"/>
+            <key name="titlebar-404-title"/>
+            <key name="portfolio_main_page"/>
+            <key name="404_title"/>
+            <key name="404_text"/>
+            <key name="404_button"/>
+            <key name="notice_text"/>
+            <key name="notice_more_url"/>
+        </key>
     </admin-texts>
 </wpml-config>

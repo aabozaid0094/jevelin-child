@@ -110,6 +110,9 @@ include get_theme_file_path('/inc/button_custom.php');
 //Posts Views
 include get_theme_file_path('/inc/post_views.php');
 
+//Jevelin Social
+include get_theme_file_path('/inc/jevelin_social.php');
+
 //ACF Options
 if( class_exists('ACF') ){
 	//Options Pages

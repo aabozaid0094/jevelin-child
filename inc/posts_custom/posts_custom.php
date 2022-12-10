@@ -60,7 +60,7 @@ function posts_custom($atts)
     ob_start();
     if( $posts -> have_posts() ){
         echo '<section class="posts-custom posts-custom-' . $posts_custom_id . $extra_classes . '">';
-            echo ($style != "tabs") ? '<h2 class="text-center">' . $section_title . '</h2>':'';
+            echo ($section_title && $style != "tabs") ? '<h2 class="text-center">' . $section_title . '</h2>':'';
             echo '<div class="' . $container_class . '">';
                 if ($slider) {
                     echo '<div class="posts-custom-slider-' . $posts_custom_id . '">';

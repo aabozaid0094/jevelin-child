@@ -48,7 +48,7 @@ div[class*="posts-custom-slider"] .slick-track{margin-bottom:50px;}
 div[class*="posts-custom-slider"] .slick-next, div[class*="posts-custom-slider"] .slick-prev{width:auto; height:auto; top:auto; bottom:0; right:auto!important; left:50%!important; font-size:60px; color:#47c9e5;}
 div[class*="posts-custom-slider"] .slick-next{left:calc(50% - 20px)!important;}
 div[class*="posts-custom-slider"] .slick-prev{left:calc(50% + 20px)!important;}
-div[class*="posts-custom-slider"] .slick-dots, div[class*="post-terms-slider"] .slick-dots{margin-top:0; padding:0;}
+div[class*="posts-custom-slider"] .slick-dots{margin-top:0; padding:0;}
 .slick-dots .slick-dot {opacity:0.5;}
 .slick-dots .slick-dot:hover, .slick-dots .slick-active .slick-dot{opacity:1;}
 .testimonial-stars i{color:#c6cdd5; margin:5px 3px;}

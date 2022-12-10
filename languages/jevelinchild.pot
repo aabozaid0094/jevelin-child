@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jevelin Child\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-10 10:10+0000\n"
+"POT-Creation-Date: 2022-12-10 10:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -30,15 +30,15 @@ msgstr ""
 msgid "Adress:"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:127
+#: inc/posts_custom/posts_custom.php:128
 msgid "All Posts"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:304
+#: inc/posts_custom/posts_custom.php:305
 msgid "All Posts Link"
 msgstr ""
 
-#: inc/post_terms.php:223 inc/posts_custom/posts_custom.php:319
+#: inc/post_terms.php:223 inc/posts_custom/posts_custom.php:320
 msgid "Arrows"
 msgstr ""
 
@@ -62,11 +62,11 @@ msgstr ""
 msgid "Category ID:"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:217
+#: inc/posts_custom/posts_custom.php:218
 msgid "Choose Post Type"
 msgstr ""
 
-#: inc/post_terms.php:144 inc/posts_custom/posts_custom.php:225
+#: inc/post_terms.php:144 inc/posts_custom/posts_custom.php:226
 msgid "Choose Taxonomy"
 msgstr ""
 
@@ -74,22 +74,22 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: inc/post_terms.php:195 inc/posts_custom/posts_custom.php:273
+#: inc/post_terms.php:195 inc/posts_custom/posts_custom.php:274
 msgid "Columns"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:234
+#: inc/posts_custom/posts_custom.php:235
 msgid "Comma separated terms of chosen taxonomy"
 msgstr ""
 
-#: inc/post_terms.php:187 inc/posts_custom/posts_custom.php:265
+#: inc/post_terms.php:187 inc/posts_custom/posts_custom.php:266
 msgid "Container Fluid"
 msgstr ""
 
 #: inc/button_custom.php:57 inc/featurebox.php:45 inc/iconbox.php:99
 #: inc/jevelin_social.php:17 inc/post_meta_item.php:46 inc/post_terms.php:139
 #: inc/team_item.php:52 inc/testimonial_item.php:52
-#: inc/posts_custom/posts_custom.php:212
+#: inc/posts_custom/posts_custom.php:213
 msgid "Content"
 msgstr ""
 
@@ -109,11 +109,11 @@ msgstr ""
 msgid "Dark Theme BG"
 msgstr ""
 
-#: inc/post_terms.php:257 inc/posts_custom/posts_custom.php:353
+#: inc/post_terms.php:257 inc/posts_custom/posts_custom.php:354
 msgid "Dot Icon"
 msgstr ""
 
-#: inc/post_terms.php:248 inc/posts_custom/posts_custom.php:344
+#: inc/post_terms.php:248 inc/posts_custom/posts_custom.php:345
 msgid "Dots"
 msgstr ""
 
@@ -127,13 +127,13 @@ msgstr ""
 
 #: inc/button_custom.php:111 inc/featurebox.php:79 inc/iconbox.php:211
 #: inc/post_meta_item.php:98 inc/post_terms.php:215 inc/team_item.php:102
-#: inc/testimonial_item.php:97 inc/posts_custom/posts_custom.php:311
+#: inc/testimonial_item.php:97 inc/posts_custom/posts_custom.php:312
 msgid "Extra Classes"
 msgstr ""
 
 #: inc/button_custom.php:114 inc/featurebox.php:82 inc/iconbox.php:214
 #: inc/post_meta_item.php:101 inc/post_terms.php:218 inc/team_item.php:105
-#: inc/testimonial_item.php:100 inc/posts_custom/posts_custom.php:314
+#: inc/testimonial_item.php:100 inc/posts_custom/posts_custom.php:315
 msgid "Extra Classes to be Added to The Component, Separated with spaces ' '"
 msgstr ""
 
@@ -149,7 +149,7 @@ msgstr ""
 msgid "Full Item Link or ordinary link"
 msgstr ""
 
-#: inc/post_terms.php:190 inc/posts_custom/posts_custom.php:268
+#: inc/post_terms.php:190 inc/posts_custom/posts_custom.php:269
 msgid "Full width container or stick to 1200px bootstrap 'container'"
 msgstr ""
 
@@ -214,6 +214,10 @@ msgstr ""
 msgid "Linked Contacts"
 msgstr ""
 
+#: inc/posts_custom/posts_custom_view_column.php:57
+msgid "Map"
+msgstr ""
+
 #: inc/post_meta_item.php:77
 msgid "Meta Is Image"
 msgstr ""
@@ -230,11 +234,11 @@ msgstr ""
 msgid "Minute(s)"
 msgstr ""
 
-#: inc/post_terms.php:240 inc/posts_custom/posts_custom.php:336
+#: inc/post_terms.php:240 inc/posts_custom/posts_custom.php:337
 msgid "Next Icon"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:133
+#: inc/posts_custom/posts_custom.php:134
 msgid "No Posts To Show"
 msgstr ""
 
@@ -242,15 +246,15 @@ msgstr ""
 msgid "No Terms To Show"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:279
+#: inc/posts_custom/posts_custom.php:280
 msgid "Number of posts per row"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:251
+#: inc/posts_custom/posts_custom.php:252
 msgid "Number of posts to discard before posting remain posts"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:240
+#: inc/posts_custom/posts_custom.php:241
 msgid "Number Of Posts To View"
 msgstr ""
 
@@ -266,7 +270,7 @@ msgstr ""
 msgid "Number of terms to discard before posting remain terms"
 msgstr ""
 
-#: inc/post_terms.php:152 inc/posts_custom/posts_custom.php:248
+#: inc/post_terms.php:152 inc/posts_custom/posts_custom.php:249
 msgid "Offset"
 msgstr ""
 
@@ -304,7 +308,7 @@ msgstr ""
 msgid "Post Terms"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:208
+#: inc/posts_custom/posts_custom.php:209
 msgid "Posts Custom"
 msgstr ""
 
@@ -312,7 +316,7 @@ msgstr ""
 msgid "Pre Title"
 msgstr ""
 
-#: inc/post_terms.php:232 inc/posts_custom/posts_custom.php:328
+#: inc/post_terms.php:232 inc/posts_custom/posts_custom.php:329
 msgid "Previous Icon"
 msgstr ""
 
@@ -325,8 +329,8 @@ msgid "Quote Watermark"
 msgstr ""
 
 #: content-item-article.php:26 content-item-article.php:94
-#: content-item-service.php:42 inc/posts_custom/posts_custom_view_column.php:62
-#: inc/posts_custom/posts_custom_view_column.php:130
+#: content-item-service.php:42 inc/posts_custom/posts_custom_view_column.php:74
+#: inc/posts_custom/posts_custom_view_column.php:139
 #: inc/posts_custom/posts_custom_view_tabs_content.php:13
 msgid "Read More"
 msgstr ""
@@ -339,7 +343,7 @@ msgstr ""
 msgid "Recent Posts Title:"
 msgstr ""
 
-#: inc/post_terms.php:179 inc/posts_custom/posts_custom.php:257
+#: inc/post_terms.php:179 inc/posts_custom/posts_custom.php:258
 msgid "Section Title"
 msgstr ""
 
@@ -355,7 +359,7 @@ msgstr ""
 msgid "Shufflehound Recent Posts Category"
 msgstr ""
 
-#: inc/post_terms.php:206 inc/posts_custom/posts_custom.php:294
+#: inc/post_terms.php:206 inc/posts_custom/posts_custom.php:295
 msgid "Slider"
 msgstr ""
 
@@ -363,11 +367,11 @@ msgstr ""
 msgid "Social Title:"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:285
+#: inc/posts_custom/posts_custom.php:286
 msgid "Style"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:288
+#: inc/posts_custom/posts_custom.php:289
 msgid "Style, Examples are columns(default), list, flipbox, tabs"
 msgstr ""
 
@@ -375,7 +379,7 @@ msgstr ""
 msgid "Team Item"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:232
+#: inc/posts_custom/posts_custom.php:233
 msgid "Terms"
 msgstr ""
 
@@ -401,11 +405,11 @@ msgid "Title"
 msgstr ""
 
 #: inc/post_meta_item.php:71 inc/post_meta_item.php:80 inc/post_terms.php:227
-#: inc/posts_custom/posts_custom.php:323
+#: inc/posts_custom/posts_custom.php:324
 msgid "Toggle Arrows"
 msgstr ""
 
-#: inc/post_terms.php:252 inc/posts_custom/posts_custom.php:348
+#: inc/post_terms.php:252 inc/posts_custom/posts_custom.php:349
 msgid "Toggle Dots"
 msgstr ""
 
@@ -421,7 +425,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: content-item-article.php:55 inc/posts_custom/posts_custom_view_column.php:84
+#: content-item-article.php:55 inc/posts_custom/posts_custom_view_column.php:93
 msgid "View(s)"
 msgstr ""
 
@@ -449,7 +453,7 @@ msgstr ""
 msgid "Working hours:"
 msgstr ""
 
-#: inc/posts_custom/posts_custom.php:298
+#: inc/posts_custom/posts_custom.php:299
 msgid "Wrap posts in slider"
 msgstr ""
 

@@ -49,9 +49,9 @@ background-color:#fff; top:0; left:0; transition:all .2s; z-index:-1;}
 .posts-custom .all-posts{background-color:#47c9e5; color:#ddd; padding:10px 50px; font-size:20px; border-radius:30px; text-align:center; font-weight:700;}
 .posts-custom .all-posts:hover{color:#fff;}
 div[class*="posts-custom-slider"] .slick-track{margin-bottom:50px;}
-div[class*="posts-custom-slider"] .slick-next, div[class*="posts-custom-slider"] .slick-prev{width:auto; height:auto; top:auto; bottom:0; right:auto!important; left:50%!important; font-size:60px; color:#47c9e5;}
-div[class*="posts-custom-slider"] .slick-next{left:calc(50% - 20px)!important;}
-div[class*="posts-custom-slider"] .slick-prev{left:calc(50% + 20px)!important;}
+div[class*="posts-custom-slider"] .slick-next, div[class*="posts-custom-slider"] .slick-prev{display:flex; align-items:center; justify-content:center; width:50px; height:50px; top:auto; bottom:0; right:auto!important; left:50%!important; font-size:60px; color:#00a69c;}
+div[class*="posts-custom-slider"] .slick-next{left:calc(50% - 50px)!important;}
+div[class*="posts-custom-slider"] .slick-prev{left:50%!important;}
 div[class*="posts-custom-slider"] .slick-dots{margin-top:0; padding:0;}
 .slick-dots .slick-dot {opacity:0.5;}
 .slick-dots .slick-dot:hover, .slick-dots .slick-active .slick-dot{opacity:1;}

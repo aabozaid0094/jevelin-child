@@ -9,6 +9,7 @@ endif;
 $image_size = 'medium';
 $title_tag = 'h3';
 $more_icon = '<i class="button-icon fa fa-long-arrow-left" aria-hidden="true"></i>';
+$columns = $args['columns'];
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('post-item'); ?> <?php Jevelin_Schema::blog(); ?>>
 	<div class="post-container-wrapper">

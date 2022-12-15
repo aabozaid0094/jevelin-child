@@ -13,11 +13,15 @@ $columns_class .= ($columns>2)?' col-md-6':'';
 
 $archive_classes = get_term_meta($current_cat_id, 'archive_classes', true) ? get_term_meta($current_cat_id, 'archive_classes', true) : "articles";
 $item_slug = get_term_meta($current_cat_id, 'item_slug', true) ? get_term_meta($current_cat_id, 'item_slug', true) : "article";
+$content_before = get_term_meta($current_cat_id, 'content_before', true) ? get_term_meta($current_cat_id, 'content_before', true) : "";
+$content_after = get_term_meta($current_cat_id, 'content_after', true) ? get_term_meta($current_cat_id, 'content_after', true) : "";
 
 wp_enqueue_style('posts-custom-css', get_stylesheet_directory_uri() . '/css/posts-custom.css');
 get_header();
 ?>
 	<div id="content">
+		<?php echo ($content_before) ? '<div class="content-before">' . do_shortcode( $content_before ) . '</div>' : ''; ?>
+
 		<div class="posts-custom<?php echo ($archive_classes) ? ' '.$archive_classes : ''; ?>">
 
 			<?php
@@ -39,7 +43,8 @@ get_header();
 			?>
 
 		</div>
-
+		
+		<?php echo ($content_after) ? '<div class="content-after">' . do_shortcode( $content_after ) . '</div>' : ''; ?>
 	</div>
 
 <?php get_footer(); ?>

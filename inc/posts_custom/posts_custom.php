@@ -171,12 +171,11 @@ function posts_custom($atts)
 add_action('vc_before_init', 'posts_custom_integrateWithVC');
 function posts_custom_integrateWithVC()
 {
-    $post_types = get_post_types(array('public' => true,), 'objects');
+    $post_types = get_post_types(array('publicly_queryable' => true,), 'objects');
     $included_post_types = array();
     $excluded_post_types = array(
         'attachment',
         'slider',
-        'testimonials',
         'shufflehound_header',
         'shufflehound_titleb',
         'shufflehound_footer',

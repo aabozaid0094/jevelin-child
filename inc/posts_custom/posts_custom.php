@@ -137,6 +137,7 @@ function posts_custom($atts)
     
     static $slick_options;
     $slick_options[] = array(
+        'rtl' => is_rtl(),
         'desktop_slidesToShow' => $columns,
         'slidesToScroll' => 'one',
         'arrows' => $arrows,

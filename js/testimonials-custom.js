@@ -1,9 +1,12 @@
 jQuery(window).on("load", function () {
     testimonials_slick_options.forEach((element, index) => {
-        let autoplay = element.autoplay;
-        let autoplaySpeed = element.autoplaySpeed;
-        let rtl = element.rtl;
-        let arrows = element.arrows;
+        let autoplay = element.autoplay ? element.autoplay : true;
+        let autoplaySpeed = element.autoplaySpeed
+            ? element.autoplaySpeed
+            : 3000;
+        let rtl = element.rtl != null ? element.rtl : true;
+        let dirAttr = rtl ? "rtl" : "";
+        let arrows = element.arrows != null ? element.arrows : false;
         let prevArrow = element.prevArrow;
         if (!prevArrow && rtl) {
             prevArrow =
@@ -18,16 +21,25 @@ jQuery(window).on("load", function () {
             nextArrow =
                 '<i class="fa fa-chevron-right" aria-hidden="true"></i>';
         }
-        let dots = element.dots;
+        let dots = element.dots != null ? element.dots : true;
         let dotIcon = element.dotIcon;
         if (!dotIcon) {
             dotIcon = '<i class="fa fa-square" aria-hidden="true"></i>';
         }
-        let centerMode = element.centerMode;
-        let desktop_slidesToShow = element.desktop_slidesToShow;
-        let tablet_slidesToShow = element.tablet_slidesToShow;
-        let mobile_slidesToShow = element.mobile_slidesToShow;
-        let slidesToScroll = element.slidesToScroll;
+        let centerMode =
+            element.centerMode != null ? element.centerMode : false;
+        let desktop_slidesToShow = element.desktop_slidesToShow
+            ? element.desktop_slidesToShow
+            : 1;
+        let tablet_slidesToShow = element.tablet_slidesToShow
+            ? element.tablet_slidesToShow
+            : Math.min(element.desktop_slidesToShow, 2);
+        let mobile_slidesToShow = element.mobile_slidesToShow
+            ? element.mobile_slidesToShow
+            : 1;
+        let slidesToScroll = element.slidesToScroll
+            ? element.slidesToScroll
+            : "all";
         let desktop_slidesToScroll =
             slidesToScroll == "one" ? 1 : parseInt(desktop_slidesToShow);
         let tablet_slidesToScroll =
@@ -35,58 +47,59 @@ jQuery(window).on("load", function () {
         let mobile_slidesToScroll =
             slidesToScroll == "one" ? 1 : parseInt(mobile_slidesToShow);
         if (
-            typeof jQuery(".testimonials-custom-" + index).slick == "function"
+            typeof jQuery(".posts-custom-slider-" + index).slick == "function"
         ) {
-            jQuery(".testimonials-custom-" + index).slick({
-                autoplay: autoplay,
-                autoplaySpeed: parseInt(autoplaySpeed),
-                dots: dots,
-                arrows: arrows,
-                nextArrow:
-                    '<a type="button" role="button" aria-label="Next" class="slick-arrow slick-next">' +
-                    prevArrow +
-                    "</a>",
-                prevArrow:
-                    '<a type="button" role="button" aria-label="Previous" class="slick-arrow slick-prev">' +
-                    nextArrow +
-                    "</a>",
-                slidesToShow: parseInt(desktop_slidesToShow),
-                slidesToScroll: desktop_slidesToScroll,
-                rtl: rtl,
-                centerMode: centerMode,
-                focusOnSelect: true,
-                responsive: [
-                    {
-                        breakpoint: 1026,
-                        settings: {
-                            slidesToShow: parseInt(desktop_slidesToShow),
-                            slidesToScroll: desktop_slidesToScroll,
+            jQuery(".posts-custom-slider-" + index)
+                .attr("dir", dirAttr)
+                .slick({
+                    autoplay: autoplay,
+                    autoplaySpeed: parseInt(autoplaySpeed),
+                    dots: dots,
+                    arrows: arrows,
+                    nextArrow:
+                        '<a type="button" role="button" aria-label="Next" class="slick-arrow slick-next">' +
+                        nextArrow +
+                        "</a>",
+                    prevArrow:
+                        '<a type="button" role="button" aria-label="Previous" class="slick-arrow slick-prev">' +
+                        prevArrow +
+                        "</a>",
+                    slidesToShow: parseInt(desktop_slidesToShow),
+                    slidesToScroll: desktop_slidesToScroll,
+                    rtl: rtl,
+                    centerMode: centerMode,
+                    responsive: [
+                        {
+                            breakpoint: 1250,
+                            settings: {
+                                slidesToShow: Math.min(parseInt(desktop_slidesToShow),4),
+                                slidesToScroll: desktop_slidesToScroll,
+                            },
                         },
-                    },
-                    {
-                        breakpoint: 1025,
-                        settings: {
-                            slidesToShow: parseInt(tablet_slidesToShow),
-                            slidesToScroll: tablet_slidesToScroll,
+                        {
+                            breakpoint: 1025,
+                            settings: {
+                                slidesToShow: parseInt(tablet_slidesToShow),
+                                slidesToScroll: tablet_slidesToScroll,
+                            },
                         },
-                    },
-                    {
-                        breakpoint: 760,
-                        settings: {
-                            slidesToShow: parseInt(mobile_slidesToShow),
-                            slidesToScroll: mobile_slidesToScroll,
+                        {
+                            breakpoint: 760,
+                            settings: {
+                                slidesToShow: parseInt(mobile_slidesToShow),
+                                slidesToScroll: mobile_slidesToScroll,
+                            },
                         },
+                    ],
+                    pauseOnDotsHover: true,
+                    customPaging: function (slider, i) {
+                        return (
+                            '<a type="button" role="button" data-role="none" tabindex="0" class="slick-dot">' +
+                            dotIcon +
+                            "</a>"
+                        );
                     },
-                ],
-                pauseOnDotsHover: true,
-                customPaging: function (slider, i) {
-                    return (
-                        '<a type="button" role="button" data-role="none" tabindex="0" class="slick-dot">' +
-                        dotIcon +
-                        "</a>"
-                    );
-                },
-            });
+                });
         }
     });
 });

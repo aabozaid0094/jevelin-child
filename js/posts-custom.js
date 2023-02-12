@@ -33,7 +33,7 @@ jQuery(window).on("load", function () {
             : 1;
         let tablet_slidesToShow = element.tablet_slidesToShow
             ? element.tablet_slidesToShow
-            : 2;
+            : Math.min(element.desktop_slidesToShow, 2);
         let mobile_slidesToShow = element.mobile_slidesToShow
             ? element.mobile_slidesToShow
             : 1;
@@ -70,9 +70,9 @@ jQuery(window).on("load", function () {
                     centerMode: centerMode,
                     responsive: [
                         {
-                            breakpoint: 1026,
+                            breakpoint: 1250,
                             settings: {
-                                slidesToShow: parseInt(desktop_slidesToShow),
+                                slidesToShow: Math.min(parseInt(desktop_slidesToShow),4),
                                 slidesToScroll: desktop_slidesToScroll,
                             },
                         },

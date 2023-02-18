@@ -1,6 +1,6 @@
 jQuery(window).on("load", function () {
     terms_slick_options.forEach((element, index) => {
-        let autoplay = element.autoplay ? element.autoplay : true;
+        let autoplay = element.autoplay != null ? element.autoplay : true;
         let autoplaySpeed = element.autoplaySpeed
             ? element.autoplaySpeed
             : 3000;

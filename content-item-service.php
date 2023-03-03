@@ -1,15 +1,11 @@
 <?php
 /**
- * Post format - Standard
+ * Post Item - Service
  */
-
-if( !isset( $style ) ) :
-	$style = jevelin_post_option( get_queried_object_id(), 'page-blog-style' );
-endif;
-$image_size = 'medium';
-$title_tag = 'h3';
-$more_icon = '<i class="button-icon fa fa-long-arrow-left" aria-hidden="true"></i>';
-$columns = $args['columns'];
+$image_size = ($args['image_size']) ? $args['image_size'] : 'medium';
+$title_tag = ($args['title_tag']) ? $args['title_tag'] : 'h3';
+$more_icon = ($args['more_icon']) ? $args['more_icon'] : '<i class="button-icon fa fa-long-arrow-left" aria-hidden="true"></i>';
+$columns = ($args['columns']) ? $args['columns'] : 1;
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('post-item'); ?> <?php Jevelin_Schema::blog(); ?>>
 	<div class="post-container-wrapper">

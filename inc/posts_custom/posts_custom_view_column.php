@@ -42,23 +42,25 @@
 			echo '</div>';
 		}else{ ?>
         <div class="post-item">
-            <?php if (get_post_meta(get_the_ID(), 'item_image', true)) { ?>
-                <div class="post-image">
-                    <?php echo wp_get_attachment_image( get_post_meta(get_the_ID(), 'item_image', true), $image_size, false, array('class'=>'post-item-image') ); ?>
-                </div>
-            <?php } elseif (get_the_post_thumbnail()) { ?>
-                <div class="post-image">
-                    <div class="post-image-overlay"></div>
-                    <?php echo get_the_post_thumbnail(get_the_ID(), $image_size); ?>
-                    <a class="post-more" href="<?php echo get_the_permalink(); ?>"><?php echo __("Read More", "jevelinchild"); ?></a>
-                </div>
-            <?php } ?>
-            <?php if (get_post_meta(get_the_ID(), 'icon', true)) { ?>
-                <div class="post-icon">
-                    <?php echo wp_get_attachment_image( get_post_meta(get_the_ID(), 'icon', true), 'thumbnail', false, array('class'=>'original-image') ); ?>
-                    <?php echo wp_get_attachment_image( get_post_meta(get_the_ID(), 'second_icon', true), 'thumbnail', false, array('class'=>'hover-image') ); ?>
-                </div>
-            <?php } ?>
+            <div class="post-image-wrapper">
+                <?php if (get_post_meta(get_the_ID(), 'item_image', true)) { ?>
+                    <div class="post-image">
+                        <?php echo wp_get_attachment_image( get_post_meta(get_the_ID(), 'item_image', true), $image_size, false, array('class'=>'post-item-image') ); ?>
+                    </div>
+                <?php } elseif (get_the_post_thumbnail()) { ?>
+                    <div class="post-image">
+                        <div class="post-image-overlay"></div>
+                        <?php echo get_the_post_thumbnail(get_the_ID(), $image_size); ?>
+                        <a class="post-more" href="<?php echo get_the_permalink(); ?>"><?php echo __("Read More", "jevelinchild"); ?></a>
+                    </div>
+                <?php } ?>
+                <?php if (get_post_meta(get_the_ID(), 'icon', true)) { ?>
+                    <div class="post-icon">
+                        <?php echo wp_get_attachment_image( get_post_meta(get_the_ID(), 'icon', true), 'thumbnail', false, array('class'=>'original-image') ); ?>
+                        <?php echo wp_get_attachment_image( get_post_meta(get_the_ID(), 'second_icon', true), 'thumbnail', false, array('class'=>'hover-image') ); ?>
+                    </div>
+                <?php } ?>
+            </div>
             <div class="post-info equalized-item-alt">
                 <div class="post-meta-pre">
                     <?php if (get_the_author()) { ?>
@@ -66,14 +68,14 @@
                             <?php echo get_the_author(); ?>
                         </div>
                     <?php } ?>
-                    <?php if (get_post_meta(get_the_ID(), 'post_views_count', true)) { ?>
+                    <?php if (getPostViews(get_the_ID())) { ?>
                         <div class="post-views">
-                            <?php echo get_post_meta(get_the_ID(), 'post_views_count', true) . " " . __("View(s)", "jevelinchild"); ?>
+                            <?php echo getPostViews(get_the_ID()) . " " . __("View(s)", "jevelinchild"); ?>
                         </div>
                     <?php } ?>
                     <?php if (get_the_content()) { ?>
                         <div class="content-minutes">
-                            <?php echo content_in_minutes(get_the_ID()); ?>
+                            <?php echo content_in_minutes_text(get_the_ID()); ?>
                         </div>
                     <?php } ?>
                 </div>
@@ -106,7 +108,14 @@
                     </a>
                 <?php } ?>
                 <div class="post-date">
-                    <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date(); ?></time>
+                    <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished">
+                        <div class="day">
+                            <?php echo get_the_date("d"); ?>
+                        </div>
+                        <div class="month">
+                            <?php echo get_the_date("F"); ?>
+                        </div>
+                    </time>
                 </div>
                 <?php if (get_the_excerpt()) { ?>
                     <div class="post-excerpt">

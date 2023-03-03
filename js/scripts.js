@@ -149,4 +149,22 @@ jQuery(document).ready(function ($) {
 		on:{click: ctc},
 		shareIn: "blank",
 	});
+
+	search_highlight();
 });
+
+let search_highlight = () => {
+	let search_input = document.querySelector('.search_input input[type="search"]');
+	let search_result = document.querySelector('.search_result');
+	if (search_input && search_result) {
+		let search_input_value = search_input.value;
+		if (search_input_value) {
+			var innerHTML = search_result.innerHTML;
+			var index = innerHTML.indexOf(search_input_value);
+			if (index >= 0) { 
+				innerHTML = innerHTML.substring(0,index) + "<span class='highlighted'>" + innerHTML.substring(index,index+search_input_value.length) + "</span>" + innerHTML.substring(index + search_input_value.length);
+				search_result.innerHTML = innerHTML;
+			}
+		}
+	}
+}

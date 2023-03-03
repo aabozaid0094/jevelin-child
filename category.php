@@ -12,7 +12,7 @@ if (!(filter_var($columns, FILTER_VALIDATE_INT, $columns_options) === false)) {
 $columns_class .= ($columns>2)?' col-md-6':'';
 
 $archive_classes = get_term_meta($current_cat_id, 'archive_classes', true) ? get_term_meta($current_cat_id, 'archive_classes', true) : "articles";
-$item_slug = get_term_meta($current_cat_id, 'item_slug', true) ? get_term_meta($current_cat_id, 'item_slug', true) : "article";
+$item_slug = get_term_meta($current_cat_id, 'item_slug', true) ? get_term_meta($current_cat_id, 'item_slug', true) : "post";
 $content_before = get_term_meta($current_cat_id, 'content_before', true) ? get_term_meta($current_cat_id, 'content_before', true) : "";
 $content_after = get_term_meta($current_cat_id, 'content_after', true) ? get_term_meta($current_cat_id, 'content_after', true) : "";
 

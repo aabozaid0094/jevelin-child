@@ -5,6 +5,7 @@ function post_terms($atts)
     static $post_terms_id = 0;
     $attributes = shortcode_atts( array(
 		'taxonomy' => 'category',
+        'exclude_terms_ids' => '',
 		'offset' => '0',
 		'parent' => '-1',
 		'hide_empty' => false,
@@ -12,6 +13,7 @@ function post_terms($atts)
 		'container_fluid' => false,
 		'columns' => '1',
 		'extra_classes' => 'terms',
+		'element_id' => '',
 		'slider' => false,
 		'arrows' => false,
 		'prev_icon' => 'fa fa-arrow-left',
@@ -21,6 +23,7 @@ function post_terms($atts)
 	), $atts );
     $html = '';
     $taxonomy = $attributes['taxonomy'];
+    $exclude_terms_ids = $attributes['exclude_terms_ids'];
     $offset = intval($attributes['offset']);
     $parent = intval($attributes['parent']);
     $hide_empty = filter_var( $attributes['hide_empty'], FILTER_VALIDATE_BOOLEAN );
@@ -35,23 +38,28 @@ function post_terms($atts)
     $dot_icon = '<i class="' . $attributes['dot_icon'] . '"></i>';
     $container_class = ($container_fluid) ? 'container-fluid' : 'container' ;
     $columns_class = 'col-lg-12' ;
-    $min_columns = 1; $max_columns = 4; $columns_options = array( "options" => array("min_range" => $min_columns, "max_range" => $max_columns));
+    $min_columns = 1; $max_columns = 6; $columns_options = array( "options" => array("min_range" => $min_columns, "max_range" => $max_columns));
     if (!(filter_var($columns, FILTER_VALIDATE_INT, $columns_options) === false)) {
         $columns_class = 'col-lg-' . 12/$columns;
     }
-    $columns_class .= ($columns>2)?' col-md-6':'';
+    $columns_class .= ($columns>4)?' col-md-3':'';
+    $columns_class .= ($columns>3)?' col-sm-4':'';
+    $columns_class .= ($columns>2)?' col-xs-6':'';
     $extra_classes = ' ' . $attributes['extra_classes'];
     $extra_classes .= (!$slider) ? ' equalized-group' : '';
+    $element_id = ($attributes['element_id']) ? $attributes['element_id'] : '' ;
     $more_icon = '<i class="button-icon fa fa-plus" aria-hidden="true"></i>';
     $title_tag = 'h3';
     $image_size = 'medium_large';
     $args = array( 'taxonomy' => $taxonomy, 'offset' => $offset, 'hide_empty' => $hide_empty,);
     if (-1 !== $parent){ $args['parent'] = $parent;}
+    if (!empty($exclude_terms_ids)){ $args['exclude'] = $exclude_terms_ids; }
     $terms = get_terms( $args );
     ob_start();
     if( !empty($terms) ){
-        echo '<section class="post-terms post-terms-' . $post_terms_id . ' post-terms-parent-' . $parent . $extra_classes . '">';
-            echo '<h2 class="text-center">' . $section_title . '</h2>';
+        $element_id_attribute = ($element_id) ? ' id='.$element_id : '' ;
+        echo '<section' . $element_id_attribute . ' class="post-terms post-terms-' . $post_terms_id . ' post-terms-parent-' . $parent . $extra_classes . '">';
+            echo '<h2 class="post-terms-title">' . $section_title . '</h2>';
             echo '<div class="' . $container_class . '">';
                 $terms_wrapper_class = ($slider) ? 'post-terms-slider-' . $post_terms_id : 'row' ;
                 $term_wrapper_class = ($slider) ? 'post-container-wrapper' : $columns_class ;
@@ -99,6 +107,10 @@ function post_terms($atts)
     }
 
     wp_enqueue_style('post-terms-css', get_stylesheet_directory_uri() . '/css/post-terms.css');
+    if (!empty($inline_css)) {
+        wp_add_inline_style( 'post-terms-css', $inline_css );
+    }
+
     wp_enqueue_script(
         'post-terms-script',
         get_stylesheet_directory_uri() . '/js/post-terms.js',
@@ -107,6 +119,9 @@ function post_terms($atts)
         true
     );
     wp_add_inline_script('post-terms-script', $inline_js, 'before');
+    if (!empty($inline_js_after)) {
+        wp_add_inline_script('post-terms-script', $inline_js_after, 'after');
+    }
     $post_terms_id++;
     
     return $html;

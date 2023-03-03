@@ -1,10 +1,15 @@
 <?php
-function custom_form_fields($fields){
+function unset_url_form_field($fields){
     unset($fields['url']);
+    return $fields;
+}
+add_filter('comment_form_default_fields', 'unset_url_form_field');
+
+function comment_phone_form_field($fields){
     $fields['comment_phone'] = '<label>' . __('Phone', 'jevelinchild') . ' <i class="icon-check sh-accent-color"></i> </label><p class="comment-form-comment_phone"> <input id="comment_phone" name="comment_phone" type="tel" required></p>';
     return $fields;
 }
-add_filter('comment_form_default_fields', 'custom_form_fields');
+add_filter('comment_form_default_fields', 'comment_phone_form_field');
 
 function verify_comment_phone_data($commentdata){
     if (!isset($_POST['comment_phone'])) {
@@ -44,3 +49,28 @@ function comment_columns_too_wide(){
     echo '<style>#comment_phone{width:150px;}</style>';
 }
 add_action( 'admin_head', 'comment_columns_too_wide' );
+
+/**
+ * Filter to move comment field to the last
+ */
+add_filter( 'comment_form_fields', 'reorder_comment_form_fields', 10, 1 );
+/**
+ * Move comment field to the last
+ * @param $comment_fields
+ * @return mixed
+ */
+function reorder_comment_form_fields($comment_fields) {
+    if (isset($comment_fields['comment'])) {
+        $comment_field = $comment_fields['comment'];
+        unset($comment_fields['comment']);
+        $comment_fields['comment'] = $comment_field;
+        if (isset($comment_fields['cookies'])) {
+            $consent_field = $comment_fields['cookies'];
+            unset($comment_fields['cookies']);
+            $comment_fields['cookies'] = $consent_field;
+        }
+    }
+
+    return $comment_fields;
+}
+    

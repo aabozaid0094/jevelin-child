@@ -8,6 +8,7 @@ function posts_custom($atts)
 		'taxonomy' => 'category',
 		'terms' => '',
 		'posts_per_page' => '-1',
+		'orderby' => '',
 		'offset' => '0',
 		'section_title' => 'Posts',
 		'container_fluid' => false,
@@ -27,6 +28,7 @@ function posts_custom($atts)
     $taxonomy = $attributes['taxonomy'];
     $terms = $attributes['terms'];
     $posts_per_page = intval($attributes['posts_per_page']);
+    $orderby = $attributes['orderby'];
     $offset = intval($attributes['offset']);
     $section_title = $attributes['section_title'];
     $container_fluid = filter_var( $attributes['container_fluid'], FILTER_VALIDATE_BOOLEAN );
@@ -55,12 +57,37 @@ function posts_custom($atts)
     $more_icon = '<i class="button-icon fa fa-plus" aria-hidden="true"></i>';
     $title_tag = 'h3';
     $image_size = 'medium_large';
-    $args = array( 'post_type' => $post_type, 'posts_per_page' => $posts_per_page, 'tax_query' => $tax_query, 'offset' => $offset, 'orderby' => array('menu_order' => 'ASC', 'date' => 'DESC'),);
+    $args = array( 'post_type' => $post_type, 'posts_per_page' => $posts_per_page, 'offset' => $offset,);
+    if (!empty($tax_query)) {
+        $args['tax_query'] = $tax_query;
+    }
+    $orderby_query = array();
+    if ($orderby == 'Views') {
+        $orderby_query['meta_value_num'] = 'DESC';
+    }
+    elseif (in_array($orderby, array('content_in_minutes','time_to_read'), true)) {
+        $orderby_query['meta_value_num'] = 'ASC';
+    }
+    else {
+        $orderby_query['date'] = 'DESC';
+    }
+    if (!empty($orderby_query)) {
+        $args['orderby'] = $orderby_query;
+    }
+    if (in_array($orderby, array('content_in_minutes', 'time_to_read', 'Views'), true)) {
+        $args['meta_key'] = $orderby;
+    }
     $posts = new WP_Query( $args );
     ob_start();
     if( $posts -> have_posts() ){
+        $template_args = array(
+            'image_size' => $image_size,
+            'title_tag' => $title_tag,
+            'more_icon' => $more_icon,
+            'columns' => $columns,
+        );
         echo '<section class="posts-custom posts-custom-' . $posts_custom_id . $extra_classes . '">';
-            echo ($section_title && $style != "tabs") ? '<h2 class="text-center">' . $section_title . '</h2>':'';
+            echo ($section_title && $style != "tabs") ? '<h2 class="posts-custom-title">' . $section_title . '</h2>':'';
             echo '<div class="' . $container_class . '">';
                 if ($slider) {
                     echo '<div class="posts-custom-slider-' . $posts_custom_id . '">';
@@ -72,7 +99,8 @@ function posts_custom($atts)
                         } elseif ($style == "list") {
                             require __DIR__ . '/posts_custom_view_list.php';
                         } else {
-                            require __DIR__ . '/posts_custom_view_column.php';
+                            // require __DIR__ . '/posts_custom_view_column.php';
+                            get_template_part( 'content', 'item-'.$post_type, $template_args );
                         }
                         $i++;
                     }
@@ -114,7 +142,8 @@ function posts_custom($atts)
                         } elseif ($style == "list") {
                             require __DIR__ . '/posts_custom_view_list.php';
                         } else {
-                            require __DIR__ . '/posts_custom_view_column.php';
+                            // require __DIR__ . '/posts_custom_view_column.php';
+                            get_template_part( 'content', 'item-'.$post_type, $template_args );
                         }
                         echo '</div>';
                         $i++;
@@ -171,11 +200,12 @@ function posts_custom($atts)
 add_action('vc_before_init', 'posts_custom_integrateWithVC');
 function posts_custom_integrateWithVC()
 {
-    $post_types = get_post_types(array('publicly_queryable' => true,), 'objects');
+    $post_types = get_post_types(array('public' => true,), 'objects');
     $included_post_types = array();
     $excluded_post_types = array(
         'attachment',
         'slider',
+        'testimonial',
         'shufflehound_header',
         'shufflehound_titleb',
         'shufflehound_footer',
@@ -240,6 +270,14 @@ function posts_custom_integrateWithVC()
                 "heading" => __("Number Of Posts To View", "jevelinchild"),
                 "param_name" => "posts_per_page",
                 "value" => -1,
+                "group" => "Data",
+                'admin_label' => true,
+            ),
+            array(
+                "type" => "dropdown",
+                "heading" => __("Order By", "jevelinchild"),
+                "param_name" => "orderby",
+                "value" => array(array('', 'Date'), array('Views', 'Views'), array('content_in_minutes', 'Read Time'),),
                 "group" => "Data",
                 'admin_label' => true,
             ),

@@ -4,6 +4,45 @@
  * Theme functions file
  */
 
+ 
+// Method: POST, PUT, GET etc
+// Data: array("param" => "value") ==> index.php?param=value
+function CallAPI($method, $url, $username = '', $password = '', $data = false)
+{
+    $curl = curl_init();
+
+    switch ($method)
+    {
+        case "POST":
+            curl_setopt($curl, CURLOPT_POST, 1);
+
+            if ($data)
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            break;
+        case "PUT":
+            curl_setopt($curl, CURLOPT_PUT, 1);
+            break;
+        default:
+            if ($data)
+                $url = sprintf("%s?%s", $url, http_build_query($data));
+    }
+
+    // Optional Authentication:
+	if (!empty($username) && !empty($password)) {
+		curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+		curl_setopt($curl, CURLOPT_USERPWD, "${username}:${password}");
+	}
+
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+    $result = curl_exec($curl);
+
+    curl_close($curl);
+
+    return $result;
+}
+
 /**
  * Enqueue parent theme styles first
  * Replaces previous method using @import
@@ -80,17 +119,47 @@ if (!is_admin()) {
 	add_action('pre_get_posts', 'category_and_tag_archives');
 }
 
+//Remove Pre-Title From Archive Pages
+function custom_archive_title( $title ) {
+    if ( is_category() ) {
+        $title = single_cat_title( '', false );
+    } elseif ( is_tag() ) {
+        $title = single_tag_title( '', false );
+    } elseif ( is_author() ) {
+        $title = '<span class="vcard">' . get_the_author() . '</span>';
+    } elseif ( is_post_type_archive() ) {
+        $title = post_type_archive_title( '', false );
+    } elseif ( is_tax() ) {
+        $title = single_term_title( '', false );
+    }
+  
+    return $title;
+}
+add_filter( 'get_the_archive_title', 'custom_archive_title' );
+
+add_action( 'admin_init', 'post_page_attributes' );
+function post_page_attributes(){ add_post_type_support( 'post', 'page-attributes' ); }
+
 //Comments Customization
 include get_theme_file_path('/inc/comment-customization.php');
 
 //WPBakery Buttons
 include get_theme_file_path('/inc/vc-buttons.php');
 
+//Posts Views
+include get_theme_file_path('/inc/post_views.php');
+
+//Content in Minutes
+include get_theme_file_path('/inc/content_in_minutes.php');
+
 //Posts Custom
 include get_theme_file_path('/inc/posts_custom/posts_custom.php');
 
 //Post Terms
 include get_theme_file_path('/inc/post_terms.php');
+
+//Search Refine
+include get_theme_file_path('/inc/search_refine.php');
 
 //Team Item
 include get_theme_file_path('/inc/team_item.php');
@@ -107,8 +176,11 @@ include get_theme_file_path('/inc/featurebox.php');
 //Custom Button
 include get_theme_file_path('/inc/button_custom.php');
 
-//Posts Views
-include get_theme_file_path('/inc/post_views.php');
+//Featured Post
+include get_theme_file_path('/inc/featured_post.php');
+
+//Admin Columns
+include get_theme_file_path('/inc/admin_columns.php');
 
 //Jevelin Social
 include get_theme_file_path('/inc/jevelin_social.php');
@@ -142,58 +214,6 @@ if( class_exists('ACF') ){
 	add_action('wp_head', 'post_schema');
 }
 
-//Generic Function To Add Column To Admin CPT Page
-function add_admin_column($column_title, $post_type, $cb){
-	// Column Header
-    add_filter( 'manage_' . $post_type . '_posts_columns', function($columns) use ($column_title) {
-		$columns[ sanitize_title($column_title) ] = $column_title;
-        return $columns;
-    } );
-    // Column Content
-    add_action( 'manage_' . $post_type . '_posts_custom_column' , function( $column, $post_id ) use ($column_title, $cb) {
-		if(sanitize_title($column_title) === $column){
-			$cb($post_id);
-        }
-    }, 10, 2 );
-}
-
-//Hundle Admin Testimonials Column
-add_admin_column(__('Testimonial Info', 'jevelinchild'), 'testimonial', function($post_id){
-	echo get_post_meta($post_id, 'info', true); 
-});
-add_admin_column(__('Testimonial Quote', 'jevelinchild'), 'testimonial', function($post_id){
-	echo substr( get_post_meta($post_id, 'quote', true), 0, 100).'...'; 
-});
-add_admin_column(__('Testimonial Image', 'jevelinchild'), 'testimonial', function($post_id){
-	echo get_the_post_thumbnail($post_id, array(100, 100)); 
-});
-
-//Remove Pre-Title From Archive Pages
-function custom_archive_title( $title ) {
-    if ( is_category() ) {
-        $title = single_cat_title( '', false );
-    } elseif ( is_tag() ) {
-        $title = single_tag_title( '', false );
-    } elseif ( is_author() ) {
-        $title = '<span class="vcard">' . get_the_author() . '</span>';
-    } elseif ( is_post_type_archive() ) {
-        $title = post_type_archive_title( '', false );
-    } elseif ( is_tax() ) {
-        $title = single_term_title( '', false );
-    }
-  
-    return $title;
-}
-add_filter( 'get_the_archive_title', 'custom_archive_title' );
-
-function content_in_minutes($id){
-	$id = ($id) ? $id : get_the_ID() ;
-	return ceil(str_word_count(get_the_content( null, false, $id )) / 130) . " " . __("Minute(s)", "jevelinchild");
-}
-
-add_action( 'admin_init', 'post_page_attributes' );
-function post_page_attributes(){ add_post_type_support( 'post', 'page-attributes' ); }
-
 function register_services_widget_area(){
 	register_sidebar(
 		array(
@@ -211,3 +231,12 @@ function register_services_widget_area(){
 	);
 }
 add_action('widgets_init', 'register_services_widget_area');
+
+function shortNumber($num) 
+{
+    $units = ['', 'K', 'M', 'B', 'T'];
+    for ($i = 0; $num >= 1000; $i++) {
+        $num /= 1000;
+    }
+    return round($num, 1) . $units[$i];
+}

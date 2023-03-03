@@ -2,14 +2,10 @@
 /**
  * Post Item - Article
  */
-
-if( !isset( $style ) ) :
-	$style = jevelin_post_option( get_queried_object_id(), 'page-blog-style' );
-endif;
-$image_size = 'medium';
-$title_tag = 'h3';
-$more_icon = '<i class="button-icon fa fa-long-arrow-left" aria-hidden="true"></i>';
-$columns = $args['columns'];
+$image_size = ($args['image_size']) ? $args['image_size'] : 'medium';
+$title_tag = ($args['title_tag']) ? $args['title_tag'] : 'h3';
+$more_icon = ($args['more_icon']) ? $args['more_icon'] : '<i class="button-icon fa fa-long-arrow-left" aria-hidden="true"></i>';
+$columns = ($args['columns']) ? $args['columns'] : 1;
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('post-item'); ?> <?php Jevelin_Schema::blog(); ?>>
 	<div class="post-container-wrapper">
@@ -51,9 +47,9 @@ $columns = $args['columns'];
 								<?php echo get_the_author(); ?>
 							</div>
 						<?php } ?>
-						<?php if (get_post_meta(get_the_ID(), 'post_views_count', true)) { ?>
+						<?php if (getPostViews(get_the_ID())) { ?>
 							<div class="post-views">
-								<?php echo get_post_meta(get_the_ID(), 'post_views_count', true) . " " . __("View(s)", "jevelinchild"); ?>
+								<?php echo getPostViews(get_the_ID()) . " " . __("View(s)", "jevelinchild"); ?>
 							</div>
 						<?php } ?>
 					</div>
@@ -97,7 +93,7 @@ $columns = $args['columns'];
 						</a>
 						<?php if (get_the_content()) { ?>
 							<div class="content-minutes">
-								<?php echo content_in_minutes(get_the_ID()); ?>
+								<?php echo content_in_minutes_text(get_the_ID()); ?>
 							</div>
 						<?php } ?>
 					</div>

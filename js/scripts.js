@@ -109,11 +109,28 @@ jQuery(document).ready(function ($) {
 			});
 		}
 	);
+	
+	let ctc = (e) => {
+		if (e.currentTarget.href === window.location.href+"#ctc") {
+			let text = window.location.href;
+			navigator.clipboard.writeText(text).then(
+				function () {
+					alert("Copied successfully!");
+				},
+				function (err) {
+					console.error("Could not copy text: ", err);
+				}
+			);
+			e.preventDefault();
+		}
+	};
 
+	jsSocials.shares.copy = { label: "Copy", logo: "fa fa-copy", shareUrl: "#ctc", countUrl: "", shareIn: "self" };
 	$(".sh-social-share-networks").jsSocials({
 		showLabel: false,
 		showCount: "inside",
 		shares: [
+			"copy",
 			"facebook",
 			"twitter",
 			"email",
@@ -129,6 +146,7 @@ jQuery(document).ready(function ($) {
 			// "stumbleupon",
 			// "pocket"
 		],
+		on:{click: ctc},
 		shareIn: "blank",
 	});
 });

@@ -8,7 +8,7 @@ function getPostViews($postID){
         add_post_meta($postID, $count_key, 0);
         return 0;
     }
-    return $count;
+    return shortNumber(intval($count));
 }
 function setPostViews($postID) {
     $count_key = 'post_views_count';

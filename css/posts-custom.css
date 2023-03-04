@@ -6,7 +6,7 @@ Secondary Theme Colors: #FFF, #bb9b70;
 .posts-custom>h2{margin-bottom:20px; margin-top:0; color:#47c9e5; font-size:40px;}
 @media(max-width:575px){ .posts-custom>h2{font-size:30px;} }
 .posts-custom .posts-list{list-style-type:none;}
-.posts-custom .post-item{display:flex; flex-direction:column; align-items:flex-start; margin-bottom:20px;}
+.posts-custom .post-item{display:flex; flex-direction:column; align-items:stretch; margin-bottom:20px;}
 div[class*="posts-custom-slider"] .post-item,
 div[class*="posts-custom-slider"] .clinic-item,
 div[class*="posts-custom-slider"] .testimonial-item

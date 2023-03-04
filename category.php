@@ -41,6 +41,9 @@ get_header();
 					get_template_part( 'content', 'none' );
                 }
 			?>
+			</div>
+				<?php jevelin_pagination(); ?>
+			</div>
 
 		</div>
 		

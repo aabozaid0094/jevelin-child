@@ -22,7 +22,7 @@ get_header();
 	<div id="content">
 		<?php echo ($content_before) ? '<div class="content-before">' . do_shortcode( $content_before ) . '</div>' : ''; ?>
 
-		<div class="posts-custom<?php echo ($archive_classes) ? ' '.$archive_classes : ''; ?>">
+		<div class="posts-custom equalized-group<?php echo ($archive_classes) ? ' '.$archive_classes : ''; ?>">
 
 			<?php
 				if ( have_posts() ) {

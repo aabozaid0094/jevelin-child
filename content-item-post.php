@@ -6,6 +6,9 @@ $image_size = ($args['image_size']) ? $args['image_size'] : 'medium';
 $title_tag = ($args['title_tag']) ? $args['title_tag'] : 'h3';
 $more_icon = ($args['more_icon']) ? $args['more_icon'] : '<i class="button-icon fa fa-long-arrow-left" aria-hidden="true"></i>';
 $columns = ($args['columns']) ? $args['columns'] : 1;
+$categories = get_the_category();
+$first_category_thumb_id = get_term_meta($categories[0]->term_id, 'image', true);
+$first_category_thumb = wp_get_attachment_image( $first_category_thumb_id, $terms_args['image_size'], false, array('class'=>'category-item-image') );
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('post-item'); ?> <?php Jevelin_Schema::blog(); ?>>
 	<div class="post-container-wrapper">
@@ -14,12 +17,20 @@ $columns = ($args['columns']) ? $args['columns'] : 1;
 				<div class="post-image-wrapper">
 					<?php if (get_post_meta(get_the_ID(), 'item_image', true)) { ?>
 						<div class="post-image">
+							<div class="post-image-overlay"></div>
 							<?php echo wp_get_attachment_image( get_post_meta(get_the_ID(), 'item_image', true), $image_size, false, array('class'=>'post-item-image') ); ?>
+							<a class="post-more" href="<?php echo get_the_permalink(); ?>"><?php echo __("Read More", "jevelinchild"); ?></a>
 						</div>
 					<?php } elseif (get_the_post_thumbnail()) { ?>
 						<div class="post-image">
 							<div class="post-image-overlay"></div>
 							<?php echo get_the_post_thumbnail(get_the_ID(), $image_size); ?>
+							<a class="post-more" href="<?php echo get_the_permalink(); ?>"><?php echo __("Read More", "jevelinchild"); ?></a>
+						</div>
+					<?php } elseif (!empty($categories) && !empty($first_category_thumb)) { ?>
+						<div class="post-image">
+							<div class="post-image-overlay"></div>
+							<?php echo $first_category_thumb; ?>
 							<a class="post-more" href="<?php echo get_the_permalink(); ?>"><?php echo __("Read More", "jevelinchild"); ?></a>
 						</div>
 					<?php } ?>

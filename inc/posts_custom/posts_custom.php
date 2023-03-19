@@ -57,7 +57,7 @@ function posts_custom($atts)
     $more_icon = '<i class="button-icon fa fa-plus" aria-hidden="true"></i>';
     $title_tag = 'h3';
     $image_size = 'medium_large';
-    $args = array( 'post_type' => $post_type, 'posts_per_page' => $posts_per_page, 'offset' => $offset,);
+    $args = array('ignore_sticky_posts' => true, 'post_type' => $post_type, 'posts_per_page' => $posts_per_page, 'offset' => $offset,);
     if (!empty($tax_query)) {
         $args['tax_query'] = $tax_query;
     }
